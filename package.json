@@ -1,0 +1,29 @@
+{
+  "name": "spaceflightnews",
+  "version": "1.0.0",
+  "description": "Backend test",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnCMello/spaceFlightNews.git"
+  },
+  "author": "John Mello",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JohnCMello/spaceFlightNews/issues"
+  },
+  "homepage": "https://github.com/JohnCMello/spaceFlightNews#readme",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.2.1",
+    "node-cron": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
