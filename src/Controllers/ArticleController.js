@@ -13,8 +13,7 @@ const getArticlesById = (id) => ArticleModel.findOne({ _id: ObjectId(id) });
 const postArticle = (body) => ArticleModel.create(body);
 
 //PUT
-const updateArticle = (id, updates) => ArticleModel.findByIdAndUpdate({ _id: ObjectId(id) }, updates, { new: true }
-)
+const updateArticle = (id, updates) => ArticleModel.findByIdAndUpdate({ _id: ObjectId(id) }, updates, { new: true })
 
 //DELETE
 const deleteArticle = (id) => ArticleModel.findByIdAndRemove({ _id: ObjectId(id) });
