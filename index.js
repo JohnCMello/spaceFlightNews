@@ -5,7 +5,9 @@ const app = express()
 
 const getDataFromApi = require('./config/getDataFromApi')
 app.use(express.json())
-app.use('/', require('./routes/articles'))
+
+app.use('/', require('./routes/index'))
+app.use('/articles', require('./routes/articles'))
 
 const PORT = process.env.PORT || 3000;
 
