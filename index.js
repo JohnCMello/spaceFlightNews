@@ -4,8 +4,8 @@ const express = require('express');
 const app = express()
 
 const getDataFromApi = require('./config/getDataFromApi')
-
-app.use('/articles', require('./routes/articles'))
+app.use(express.json())
+app.use('/', require('./routes/articles'))
 
 const PORT = process.env.PORT || 3000;
 
@@ -14,8 +14,8 @@ const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(`Server running on port: ${PORT}`);
     })
-    connectDB()
     getDataFromApi()
+    connectDB()
   } catch (error) {
     console.log(error);
   }
