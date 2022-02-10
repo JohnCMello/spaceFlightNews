@@ -15,7 +15,7 @@ const eventSchema = new mongoose.Schema({
 });
 
 const ArticleSchema = new mongoose.Schema({
-  id: Number,
+  id: String,
   featured: Boolean,
   title: String,
   url: String,
