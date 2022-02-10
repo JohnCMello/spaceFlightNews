@@ -1,20 +1,20 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const launchSchema = new mongoose.Schema({
+const launchSchema = new Schema({
   id: String,
   provider: String
 }, {
   timestamps: true
 });
 
-const eventSchema = new mongoose.Schema({
+const eventSchema = new Schema({
   id: String,
   provider: String
 }, {
   timestamps: true
 });
 
-const ArticleSchema = new mongoose.Schema({
+const ArticleSchema = new Schema({
   id: String,
   featured: Boolean,
   title: String,
@@ -27,6 +27,6 @@ const ArticleSchema = new mongoose.Schema({
   events: [eventSchema]
 });
 
-const ArticleModel = mongoose.model('Article', ArticleSchema);
+const ArticleModel = model('Article', ArticleSchema);
 
 module.exports = ArticleModel;
