@@ -15,7 +15,7 @@ const {
 // [GET]/articles/:   Listar todos os artigos da base de dados, utilizar o sistema de paginação para não sobrecarregar a REQUEST
 router.get('/', async (req, res) => {
   try {
-    const articles = await getArticles()
+    const articles = await getArticles().limit(10)
     res.status(200).send({ data: articles });
   } catch (error) {
     console.log(error);
