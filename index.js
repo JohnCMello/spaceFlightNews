@@ -3,7 +3,11 @@ const connectDB = require('./config/db');
 const express = require('express');
 const app = express()
 
-const getDataFromApi = require('./config/getDataFromApi')
+const {
+  getDataFromApi,
+  insertNewArticlesIntoDB
+} = require('./config/databaseUpdater')
+
 app.use(express.json())
 
 app.use('/', require('./routes/index'))
@@ -16,8 +20,9 @@ const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(`Server running on port: ${PORT}`);
     })
-    getDataFromApi()
     connectDB()
+    getDataFromApi()
+    insertNewArticlesIntoDB()
   } catch (error) {
     console.log(error);
   }
