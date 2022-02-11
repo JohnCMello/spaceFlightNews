@@ -4,8 +4,7 @@ const ArticleModel = require('../src/Models/ArticleModel')
 
 const getHighestId = async () => {
   try {
-    const idList = await ArticleModel.distinct('id')
-    if (!idList.length) return 1
+    const idList = await ArticleModel.distinct('id') || [1]
     const highestId = idList.sort((a, b) => b - a)
     return highestId[0]
   } catch (error) {
@@ -21,7 +20,6 @@ const getArticlesCount = async () => {
 const insertNewArticlesIntoDB = async () => {
   try {
     const highestId = await getHighestId()
-    if (!highestId) return
     const apiUrl = `https://api.spaceflightnewsapi.net/v3/articles?id_gt=${highestId}`
     const { data } = await axios(apiUrl)
     await ArticleModel.insertMany(data)
@@ -37,7 +35,6 @@ const getDataFromApi = async () => {
     const articlesCount = await getArticlesCount()
     const apiUrl = `https://api.spaceflightnewsapi.net/v3/articles?_limit=${articlesCount}`
     const { data } = await axios(apiUrl)
-
     if (articleList.length === 0) return await ArticleModel.insertMany(data)
     return
   } catch (error) {
