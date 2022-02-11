@@ -2,13 +2,15 @@ const axios = require('axios');
 
 const ArticleModel = require('../src/Models/ArticleModel')
 
+// TODO: Handle Errors
+
 const getHighestId = async () => {
   try {
     const idList = await ArticleModel.distinct('id') || [1]
     const highestId = idList.sort((a, b) => b - a)
     return highestId[0]
   } catch (error) {
-
+    console.log(error)
   }
 }
 
@@ -22,8 +24,8 @@ const insertNewArticlesIntoDB = async () => {
     const highestId = await getHighestId()
     const apiUrl = `https://api.spaceflightnewsapi.net/v3/articles?id_gt=${highestId}`
     const { data } = await axios(apiUrl)
-    await ArticleModel.insertMany(data)
     console.log(highestId)
+    return await ArticleModel.insertMany(data)
   } catch (error) {
     console.log(error)
   }
