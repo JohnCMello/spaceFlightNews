@@ -1,7 +1,10 @@
-const dotenv = require('dotenv').config({ path: './config/config.env' });
+require('dotenv').config({ path: './config/config.env' });
 const connectDB = require('./config/db');
+const cron = require('node-cron')
 const express = require('express');
 const app = express()
+
+// TODO: Handle Errors
 
 const {
   getDataFromApi,
@@ -22,7 +25,7 @@ const PORT = process.env.PORT || 3000;
     })
     connectDB()
     getDataFromApi()
-    insertNewArticlesIntoDB()
+    cron.schedule('0 9 * * *', () => insertNewArticlesIntoDB())
   } catch (error) {
     console.log(error);
   }
