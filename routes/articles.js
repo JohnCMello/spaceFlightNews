@@ -63,11 +63,11 @@ router.post('/', async (req, res) => {
       launches,
       events
     })
-    res.status(200).send({ data: article });
+    res.status(201).send({ data: article });
 
   } catch (error) {
     console.log(error);
-    res.send(error);
+    res.status(404).send(error);
   }
 });
 
@@ -80,7 +80,7 @@ router.patch('/:id', async (req, res) => {
     res.status(200).send({ data: updatedArticle });
   } catch (error) {
     console.log(error);
-    res.send(error);
+    res.status(404).send(error);
   }
 });
 
@@ -89,10 +89,10 @@ router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const deletedArticle = await deleteArticle(id)
-    res.status(204).send({ data: deletedArticle })
+    res.status(200).send({ data: deletedArticle })
   } catch (error) {
     console.log(error);
-    res.send(error);
+    res.status(404).send(error);
   }
 });
 
