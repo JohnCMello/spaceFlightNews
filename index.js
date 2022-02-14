@@ -4,6 +4,9 @@ const cron = require('node-cron');
 const express = require('express');
 const app = express();
 
+const indexRoutes = require('./routes/index')
+const articleRoutes = require('./routes/articles')
+
 // TODO: Handle Errors
 
 const {
@@ -13,8 +16,8 @@ const {
 
 app.use(express.json());
 
-app.use('/', require('./routes/index'));
-app.use('/articles', require('./routes/articles'));
+app.use('/', indexRoutes);
+app.use('/articles', articleRoutes);
 
 const PORT = process.env.PORT || 3000;
 
